@@ -1,0 +1,58 @@
+.current {
+  color: currentColor;
+}
+.selected {
+  color: #fd7e14;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+a:hover {
+  color: #fd7e14;
+  text-decoration: none;
+}
+li {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+ul {
+  padding: 0px;
+  margin: 0px;
+}
+.list:hover {
+  transform: scale(1.06);
+}
+.list {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: -1px 0px 10px 0px rgba(0, 0, 0, 0.75);
+}
+@media screen and (max-width: 575px) {
+  .image-default {
+    display: block;
+    background-size: cover;
+    height: 195px;
+  }
+}
+@media screen and (min-width: 576px) and (max-width: 767px) {
+  .image-default {
+    height: 285px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .card-default {
+    height: 184px;
+  }
+}
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .card-default {
+    height: 161px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .card-default {
+    height: 195px;
+  }
+}
