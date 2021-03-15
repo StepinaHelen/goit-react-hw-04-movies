@@ -1,6 +1,6 @@
 import './App.css';
 import React, { lazy, Suspense } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import Spinner from './Components/Spinner';
 import routes from './routes';
 import AppBar from './Components/AppBar';
@@ -29,7 +29,8 @@ function App() {
           <Route exact path={routes.home} component={HomePage} />
           <Route path={routes.movieDetailsPage} component={MovieDetailsPage} />
           <Route exact path={routes.movies} component={MoviesPage} />
-          <Route component={NotFoundView} />
+          {/* <Route component={NotFoundView} /> */}
+          <Redirect to="/" />
         </Switch>
       </Suspense>
     </div>
