@@ -27,6 +27,7 @@ class MoviesDetailsView extends Component {
     const { location, history } = this.props;
     if (location.state && location.state.from) {
       history.push(location.state.from);
+      return;
     }
     history.push(routes.home);
     // альтернатива:

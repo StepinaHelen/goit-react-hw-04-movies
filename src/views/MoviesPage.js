@@ -1,19 +1,29 @@
 import React, { Component } from 'react';
 import MovieList from '../Components/MovieList';
 import api from '../api';
+import queryString from 'query-string';
 
 class MoviesPage extends Component {
   state = {
     query: '',
     movies: [],
   };
+  async componentDidMount() {
+    const parsed = queryString.parse(this.props.location.search);
+    // console.log(parsed);
+    const stringified = queryString.stringify(parsed);
+    // console.log(stringified);
+    // console.log(this.props.location.search);
 
+    if (stringified) {
+      const results = await api.fetchMoviesSearchparsed(stringified);
+      this.setState({ movies: results, query: '' });
+    }
+  }
   getValue = event => {
     this.setState({ query: event.currentTarget.value });
   };
-
-  submitHandler = e => {
-    e.preventDefault();
+  movieSearch = () => {
     const { query } = this.state;
     api.fetchMoviesSearch(query).then(results =>
       this.setState({
@@ -21,6 +31,11 @@ class MoviesPage extends Component {
         query: '',
       }),
     );
+  };
+
+  submitHandler = e => {
+    e.preventDefault();
+    this.movieSearch();
   };
 
   render() {

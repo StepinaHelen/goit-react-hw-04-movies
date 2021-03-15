@@ -32,11 +32,19 @@ const fetchMoviesSearch = value => {
     )
     .then(response => response.data.results);
 };
-
-export default {
+const fetchMoviesSearchparsed = value => {
+  return axios
+    .get(
+      `/3/search/movie?api_key=${key}&${value}&language=en-US&page=1&include_adult=false`,
+    )
+    .then(response => response.data.results);
+};
+const api = {
   fetchCast,
   fetchReviews,
   fetchMoviesDetails,
   fetchMovies,
   fetchMoviesSearch,
+  fetchMoviesSearchparsed,
 };
+export default api;

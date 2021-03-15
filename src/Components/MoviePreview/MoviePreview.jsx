@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 const MoviePreview = ({ title, url }) => {
   return (
     <div className={`card list`}>
@@ -22,6 +23,11 @@ const MoviePreview = ({ title, url }) => {
       </div>
     </div>
   );
+};
+
+MoviePreview.propTypes = {
+  url: PropTypes.string,
+  title: PropTypes.string.isRequired,
 };
 
 export default MoviePreview;

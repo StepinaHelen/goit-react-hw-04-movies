@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import MoviePreview from '../MoviePreview';
 const MovieList = ({ movies, location }) => {
@@ -24,5 +25,9 @@ const MovieList = ({ movies, location }) => {
       ))}
     </ul>
   );
+};
+
+MovieList.propTypes = {
+  movies: PropTypes.array.isRequired,
 };
 export default withRouter(MovieList);
