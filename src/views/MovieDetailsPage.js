@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, NavLink } from 'react-router-dom';
 import Cast from '../Components/Cast';
+import Trailer from '../Components/Trailer/Trailer';
 import Reviews from '../Components/Reviews';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import routes from '../../src/routes';
@@ -81,15 +82,54 @@ class MoviesDetailsView extends Component {
               </ul>
               <hr />
               <div>
+                {/* to=
+                {{
+                  pathname: `{`/movies/${id}/cast`}`,
+                  state: {
+                    from: this.props.location.state.from,
+                    id: this.state.id,
+                  },
+                }} */}
                 <h4>Additional information</h4>
-                <NavLink to={`/movies/${id}/cast`}>
+
+                <NavLink
+                  to={{
+                    pathname: `/movies/${id}/cast`,
+                    state: {
+                      from: this.props.location.state.from,
+                      id: this.state.id,
+                    },
+                  }}
+                >
                   <p className="font-italic">
                     <u>Cast</u>
                   </p>
                 </NavLink>
-                <NavLink to={`/movies/${id}/reviews`}>
+                <NavLink
+                  to={{
+                    pathname: `/movies/${id}/reviews`,
+                    state: {
+                      from: this.props.location.state.from,
+                      id: this.state.id,
+                    },
+                  }}
+                >
                   <p className="font-italic">
                     <u>Reviews</u>
+                  </p>
+                </NavLink>
+
+                <NavLink
+                  to={{
+                    pathname: `/movies/${id}/trailer`,
+                    state: {
+                      from: this.props.location.state.from,
+                      id: this.state.id,
+                    },
+                  }}
+                >
+                  <p className="font-italic">
+                    <u>Trailer</u>
                   </p>
                 </NavLink>
               </div>
@@ -105,6 +145,11 @@ class MoviesDetailsView extends Component {
         <Route
           path={`${this.props.match.path}/reviews`}
           render={props => <Reviews {...props} />}
+        />
+
+        <Route
+          path={`${this.props.match.path}/trailer`}
+          render={props => <Trailer {...props} />}
         />
       </div>
     );

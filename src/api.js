@@ -1,6 +1,8 @@
 import axios from 'axios';
 const key = `bf08c0c07642287cbabe383c02818eb3`;
 axios.defaults.baseURL = 'https://api.themoviedb.org';
+//  --header 'Authorization: Bearer <<access_token>>' \
+//   --header 'Content-Type: application/json;charset=utf-8'
 
 const fetchCast = id => {
   return axios

@@ -8,30 +8,18 @@ class MoviesPage extends Component {
     query: '',
     movies: [],
   };
-
   async componentDidMount() {
-    const { query } = queryString.parse(this.props.location.search);
-    if (query) {
-      api.fetchMoviesSearch(query).then(results =>
-        this.setState({
-          movies: results,
-        }),
-      );
-    }
-  }
-  async componentDidUpdate(prevProps, _) {
     const parsed = queryString.parse(this.props.location.search);
+    // console.log(parsed);
     const stringified = queryString.stringify(parsed);
+    // console.log(stringified);
+    // console.log(this.props.location.search);
 
-    const prevParsed = queryString.parse(prevProps.location.search);
-    const prevStringified = queryString.stringify(prevParsed);
-
-    if (stringified !== prevStringified) {
+    if (stringified) {
       const results = await api.fetchMoviesSearchparsed(stringified);
-      this.setState({ movies: results });
+      this.setState({ movies: results, query: '' });
     }
   }
-
   getValue = event => {
     this.setState({ query: event.currentTarget.value });
   };
@@ -46,17 +34,12 @@ class MoviesPage extends Component {
   };
 
   submitHandler = e => {
-    const { history, location } = this.props;
-    const { query } = this.state;
     e.preventDefault();
-    this.setState({ query: '' });
-    history.push({
-      ...location,
-      search: `?query=${query}`,
-    });
+    this.movieSearch();
   };
 
   render() {
+    const { history } = this.props;
     const { query, movies } = this.state;
     return (
       <>
@@ -71,7 +54,15 @@ class MoviesPage extends Component {
             placeholder="Search movie"
           />
 
-          <button type="submit" className="btn btn-dark">
+          <button
+            type="submit"
+            className="btn btn-dark"
+            onClick={() =>
+              history.push({
+                search: `?query=${query}`,
+              })
+            }
+          >
             Search
           </button>
         </form>
@@ -81,4 +72,4 @@ class MoviesPage extends Component {
   }
 }
 
-export default MoviesPage;
+// export default MoviesPage;
